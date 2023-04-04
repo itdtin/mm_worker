@@ -9,13 +9,13 @@ from eth_account.signers.local import LocalAccount
 from logzero import logger
 from web3 import Account, Web3
 
-import config as config
+import config
 
 max_int = 115792089237316195423570985008687907853269984665640564039457584007913129639935
 
 
 def approve(
-    web3: Web3, token, spender, amount, wallet: LocalAccount, gas_multiplicator=1
+    web3: Web3, token, spender, amount, wallet: LocalAccount, gas_multiplicator=2
 ):
     return call_function(
         token.functions.approve,

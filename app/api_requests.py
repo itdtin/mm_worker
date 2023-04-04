@@ -6,12 +6,6 @@ import config
 from logzero import logger
 
 
-def eth_price():
-    url = "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD"
-    result = get(url)
-    return result.json()["USD"]
-
-
 def get(url, headers=None, params=None):
     if params is None:
         params = {}
@@ -30,9 +24,11 @@ def get(url, headers=None, params=None):
             time.sleep(10)
 
 
+def get_swap_data(chainId, src_token, src_amount, dst_token, wallet_address, slippage, timeout):
+    url = f"https://swap.metaswap.codefi.network/networks/{chainId}/trades?sourceAmount={src_amount}&sourceToken={src_token}&destinationToken={dst_token}&slippage={slippage}&walletAddress={wallet_address}&timeout={timeout}&enableDirectWrapping=true&includeRoute=true"
+    return get(url).json()
 
-def get_swap_data():
-    url = "https://swap.metaswap.codefi.network/networks/42161/trades?sourceAmount=10000000000000000&sourceToken=0x0000000000000000000000000000000000000000&destinationToken=0x11cdb42b0eb46d95f990bedd4695a6e3fa034978&slippage=3&walletAddress=0xc17e5dec5a1f32a947d4456906fe53079215f76b&timeout=10000&enableDirectWrapping=true&includeRoute=true"
 
-def get_bridge_data():
-    pass
+def get_bridge_data(wallet_address, src_chain_id, dst_chain_id, src_token, dst_token, src_amount_wei, slippage):
+    url = f"https://bridge.metaswap.codefi.network/getQuote?walletAddress={wallet_address}&srcChainId={src_chain_id}&destChainId={dst_chain_id}&srcTokenAddress={src_token}&destTokenAddress={dst_token}&srcTokenAmount={src_amount_wei}&slippage={slippage}&aggIds=socket,lifi&insufficientBal=false"
+    return get(url).json()
