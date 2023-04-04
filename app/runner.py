@@ -35,12 +35,19 @@ class Runner:
             self.make_pause_btw_wlt()
 
     def run_projects_in_order(self, wallet):
-        for project_name, project_params in flows_config.PROJECTS.items():
-            self.run_project(wallet, project_name, project_params)
-            self.make_pause_btw_projects()
+        for chain_name, chain_actions in flows_config.PROJECTS.items():
+            for project_params in chain_actions:
+                script_name = project_params['script']
+                if script_name == "swap":
+                    project_name = f"{chain_name}_{project_params['script']}_{project_params['srcToken']}_{project_params['dstToken']}"
+                else:
+                    project_name = f"{chain_name}_{project_params['script']}_{project_params['srcToken']}_{project_params['srcChain']}_{project_params['dstChain']}"
+                if config.to_run[chain_name][script_name]:
+                    print(f"RUNNUNIG {project_name} ...")
+                    self.run_project(wallet, project_params)
+                    self.make_pause_btw_projects()
 
-    def run_project(self, wallet, project_name: str, run_args=None):
-        logger.info(f"Starting {project_name}")
+    def run_project(self, wallet, run_args=None):
         if not run_args:
             run_args = {}  
         args = [wallet] + [run_args]

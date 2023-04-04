@@ -121,7 +121,7 @@ def get_random_amount(_min, _max, digitMin=3, digitMax=5):
 
 
 def wait_balance_is_changed_ETH(
-    w3, address, balance_before, wait_time: int = 2000, wait_increase: bool = True
+    w3, address, balance_before, wait_time: int = config.BRIDGE_BALANCE_WAIT_TIME, wait_increase: bool = True
 ):
     waited = 0
     balance_after = balance_before
@@ -136,3 +136,33 @@ def wait_balance_is_changed_ETH(
                 logger.error(f"ERROR | There is no any income ETH")
                 raise TimeoutError
         return balance_after
+    
+def wait_balance_is_changed_token(
+        token_contract, address, balance_before, wait_time: int = config.BRIDGE_BALANCE_WAIT_TIME, wait_increase: bool = True
+):
+    waited = 0
+    balance_after = balance_before
+    if wait_increase:
+        logger.info(f"INFO |  Waiting for the TOKEN bridged onto destination network")
+        while balance_after <= balance_before:
+            wait_now = random.randint(5, 20)
+            sleep(wait_now)
+            balance_after = token_contract.functions.balanceOf(address).call()
+            waited += wait_now
+            if waited > wait_time:
+                logger.error(f"ERROR | There is no any income ETH")
+                raise TimeoutError
+        return balance_after
+
+def wait_balance_after_bridge(wallet_address, dstToken, dstChain):
+    w3_dst = Web3(Web3.HTTPProvider(dstChain.get("RPC")))
+    if dstToken["address"] == config.ETH:
+        balanceBefore = w3_dst.eth.get_balance(wallet_address)
+        wait_balance_is_changed_ETH(w3_dst, wallet_address, balanceBefore)
+    else:
+        token = w3_dst.eth.contract(
+            address=w3_dst.toChecksumAddress(dstToken["address"]),
+            abi=config.TOKEN_ABI,
+        )
+        balanceBefore = token.functions.balanceOf(wallet_address).call() 
+        wait_balance_is_changed_token(token, wallet_address, balanceBefore)
