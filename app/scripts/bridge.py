@@ -70,10 +70,11 @@ def bridge(wallet, params, wait_balance=True):
                     "data": bridge_data["trade"]["data"],
                     "from": w3.toChecksumAddress(bridge_data["trade"]["from"]),
                     "to": w3.toChecksumAddress(bridge_data["trade"]["to"]),
-                    "value": amount,
+                    "value": bridge_data["trade"]["value"],
                     "gas": bridge_data["trade"]["gasLimit"] * gas_multiplier,
                     "gasPrice": w3.eth.gas_price,
                     "nonce": w3.eth.get_transaction_count(wallet.address),
+                    "chainId": srcChain["CHAIN_ID"]
                 }
                 gas_multiplier += 1
                 signed_txn = wallet.sign_transaction(tx)

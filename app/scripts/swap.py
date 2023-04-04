@@ -59,7 +59,8 @@ def swap(wallet, params):
                     "value": int(swap_data["trade"]["value"]),
                     "gas": swap_data["averageGas"] * gas_multiplier,
                     "gasPrice": w3.eth.gas_price,
-                    "nonce": w3.eth.get_transaction_count(wallet.address)
+                    "nonce": w3.eth.get_transaction_count(wallet.address),
+                    "chainId": srcChain["CHAIN_ID"]
 
                 }
                 signed_txn = wallet.sign_transaction(tx)
