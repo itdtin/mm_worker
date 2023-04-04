@@ -8,23 +8,25 @@ from app.helpers.utils import approve, eth_price, get_random_amount, send_raw_tr
 import config
 
 def swap(wallet, params):
-    srcChain = config.NETWORKS[params["srcChain"]]
-    srcToken = srcChain[params["srcToken"]]
-    dstChain = config.NETWORKS[params["dstChain"]]
-    dstToken = dstChain[params["dstToken"]]
+    srcChain = config.NETWORKS.get(params.get("srcChain"))
+    srcToken = srcChain.get(params.get("srcToken"))
+    srcTokenAddress = srcToken.get("address")
 
-    gas_multiplier = srcChain["GAS_MULTIPLIER"]
-    w3 = Web3(Web3.HTTPProvider(srcChain["RPC"]))
+    dstChain = config.NETWORKS.get(params.get("dstChain"))
+    dstToken = dstChain.get(params.get("dstToken"))
+    dstTokenAddress = dstToken.get("address")
+
+    gas_multiplier = srcChain.get("GAS_MULTIPLIER")
+    w3 = Web3(Web3.HTTPProvider(srcChain.get("RPC")))
     
     try:
-        if srcToken["address"] == config.ETH:
+        if srcTokenAddress == config.ETH:
             eth_price_at_the_moment = eth_price()
             random_amount_to_use = get_random_amount(params["amountMin"], params["amountMax"])
-            amount = w3.toWei(random_amount_to_use / eth_price_at_the_moment, srcToken["decimals"])
+            amount = w3.toWei(random_amount_to_use / eth_price_at_the_moment, srcToken.get("decimals"))
         else:
-            print("srcAddress: ", srcToken["address"])
             token = w3.eth.contract(
-                address=w3.toChecksumAddress(srcToken["address"]),
+                address=w3.toChecksumAddress(srcTokenAddress),
                 abi=config.TOKEN_ABI,
             )
             amount = token.functions.balanceOf(wallet.address).call()
@@ -32,7 +34,7 @@ def swap(wallet, params):
         logger.error(f"ERROR | Can't prepare to swap and calculate amount.\n{e}")
 
     try: 
-        swap_data = get_swap_data(srcChain["CHAIN_ID"], srcToken["address"], amount, dstToken["address"], wallet.address,
+        swap_data = get_swap_data(srcChain.get("CHAIN_ID"), srcTokenAddress, amount, dstTokenAddress, wallet.address,
                                   config.SWAP_SLIPPAGE, config.TIMEOUT)
         for i in swap_data:
             if i["trade"]:
@@ -42,7 +44,7 @@ def swap(wallet, params):
         logger.error(f"ERROR | Can't get swap data from MM.\n{e}")
  
     try:
-        if srcToken["address"] != config.ETH:
+        if srcTokenAddress != config.ETH:
             logger.info("Approving ...")
             approve(w3, token, w3.toChecksumAddress(swap_data["trade"]["to"]), amount, wallet)
         

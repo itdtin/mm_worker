@@ -18,5 +18,15 @@ PROJECTS = {
         "dstToken": "ETH",
         "amountMin": 12.1, # Swap in params in usd
         "amountMax": 13.1,
-    }
+    },
+    # "arb_sw_eth": {
+    #     "script": "bridge",
+    #     "srcChain": "ARBITRUM",
+    #     "dstChain": "OPTIMISM",
+    #     "srcToken": "ETH",
+    #     "dstToken": "ETH",
+    #     "amount": "auto",
+    #     "amountMin": "",
+    #     "amountMax": ""
+    # },
 }
