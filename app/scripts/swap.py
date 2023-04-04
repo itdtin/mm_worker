@@ -21,15 +21,14 @@ def swap(wallet, params):
     
     try:
         if srcTokenAddress == config.ETH:
-            eth_price_at_the_moment = eth_price()
-            random_amount_to_use = get_random_amount(params["amountMin"], params["amountMax"])
-            amount = w3.toWei(random_amount_to_use / eth_price_at_the_moment, srcToken.get("decimals"))
+            balance_wei = w3.eth.get_balance(wallet.address)
         else:
             token = w3.eth.contract(
                 address=w3.toChecksumAddress(srcTokenAddress),
                 abi=config.TOKEN_ABI,
             )
-            amount = token.functions.balanceOf(wallet.address).call()
+            balance_wei = token.functions.balanceOf(wallet.address).call()
+        amount = int(balance_wei / 100 * params["amountP"])
     except Exception as e:
         logger.error(f"ERROR | Can't prepare to swap and calculate amount.\n{e}")
 

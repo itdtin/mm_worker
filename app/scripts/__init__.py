@@ -1,9 +1,11 @@
 from app.scripts.swap import swap
+from app.scripts.bridge import bridge
 
 
 
 __all__ = [
-    swap
+    swap,
+    bridge
 ]
 
 
