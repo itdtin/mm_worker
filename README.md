@@ -1,4 +1,5 @@
 # MM_swap_bridge
+# Developed by: https://t.me/BenderRoyman
 
 # Prerequisites:
   Python 3.9
