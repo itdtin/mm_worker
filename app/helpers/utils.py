@@ -121,7 +121,7 @@ def get_random_amount(_min, _max, digitMin=3, digitMax=5):
 
 
 def wait_balance_is_changed_ETH(
-    w3, address, balance_before, wait_time: int = 2000, wait_increase: bool = True
+    w3, address, balance_before, wait_time: int = config.BRIDGE_BALANCE_WAIT_TIME, wait_increase: bool = True
 ):
     waited = 0
     balance_after = balance_before
@@ -138,12 +138,12 @@ def wait_balance_is_changed_ETH(
         return balance_after
     
 def wait_balance_is_changed_token(
-        token_contract, address, balance_before, wait_time: int = 2000, wait_increase: bool = True
+        token_contract, address, balance_before, wait_time: int = config.BRIDGE_BALANCE_WAIT_TIME, wait_increase: bool = True
 ):
     waited = 0
     balance_after = balance_before
     if wait_increase:
-        logger.info(f"INFO |  Waiting for the ETH bridged onto destination network")
+        logger.info(f"INFO |  Waiting for the TOKEN bridged onto destination network")
         while balance_after <= balance_before:
             wait_now = random.randint(5, 20)
             sleep(wait_now)

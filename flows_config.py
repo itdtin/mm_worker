@@ -42,7 +42,7 @@ PROJECTS = {
             "dstChain": "ARBITRUM",
             "srcToken": "ETH",
             "dstToken": "COMP",
-            "amountP": 92, # 95%
+            "amountP": 92, # 92%
         },
         {
             "script": "swap",
@@ -128,7 +128,7 @@ PROJECTS = {
             "dstChain": "POLYGON",
             "srcToken": "UNI",
             "dstToken": "USDC",
-            "amountP": 100
+            "amountP": 99.9999
         },
         {
             "script": "bridge",
@@ -155,6 +155,14 @@ PROJECTS = {
             "srcToken": "OP",
             "dstToken": "ETH",
             "amountP": 99.9999, # OP bad calculation cause 99.99
+        },
+        {
+            "script": "bridge",
+            "srcChain": "OPTIMISM",
+            "dstChain": "ARBITRUM",
+            "srcToken": "ETH",
+            "dstToken": "ETH",
+            "amountP": 100
         },
     ]
 }

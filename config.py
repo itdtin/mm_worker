@@ -3,13 +3,42 @@ from app.helpers.abis import TOKEN_ABI
 
 dotenv.load_dotenv()
 
+to_run = {
+    "MAINNET": {
+        "swap": False,
+        "bridge": False
+    },
+    "ARBITRUM": {
+        "swap": True,
+        "bridge": True
+    },
+    "BSC": {
+        "swap": True,
+        "bridge": True
+    },
+    "AVAX": {
+        "swap": True,
+        "bridge": True
+    },
+    "POLYGON": {
+        "swap": True,
+        "bridge": True
+    },
+    "OPTIMISM": {
+        "swap": True,
+        "bridge": True
+    },
+}
+
 ATTEMTS_TO_NODE_REQUEST = 9
 ATTEMTS_TO_API_REQUEST = 9
 
+BRIDGE_BALANCE_WAIT_TIME: int = 2000 # 2000 seconds
+
 # Swap
-SWAP_SLIPPAGE: int = 3
-BRIDGE_SLIPPAGE: int = 5
-TIMEOUT: int = 10000
+SWAP_SLIPPAGE: int = 3 # Metamask default
+BRIDGE_SLIPPAGE: int = 5 # Metamask default
+TIMEOUT: int = 10000 # Metamask default
 
 # Wait
 WAIT_BTW_WALLET_MIN: int = 1
@@ -177,5 +206,4 @@ NETWORKS = {
             "decimals": ETH_DECIMALS
         }
     },
-
 }
