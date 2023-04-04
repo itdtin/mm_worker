@@ -50,6 +50,7 @@ OPTIMISM_CHAIN_ID: int = 10
 
 NETWORKS = {
     "ARBITRUM": {
+        "GAS_LEFT": 2,
         "GAS_MULTIPLIER": 5,
         "CHAIN_ID": ARBITRUM_CHAIN_ID,
         "RPC": ARBITRUM_RPC,
@@ -67,6 +68,7 @@ NETWORKS = {
         }
     },
     "OPTIMISM": {
+        "GAS_LEFT": 1,
         "GAS_MULTIPLIER": 4,
         "CHAIN_ID": OPTIMISM_CHAIN_ID,
         "RPC": OPTIMISM_RPC,
@@ -84,6 +86,7 @@ NETWORKS = {
         }
     },
     "MAINNET": {
+        "GAS_LEFT": 2,
         "GAS_MULTIPLIER": 2,
         "CHAIN_ID": MAINNET_CHAIN_ID,
         "RPC": MAINNET_RPC,

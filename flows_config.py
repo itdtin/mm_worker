@@ -17,6 +17,14 @@ PROJECTS = {
     #     "dstToken": "ETH",
     #     "amountP": 100
     # },
+    "op_arb_br": {
+        "script": "bridge",
+        "srcChain": "OPTIMISM",
+        "dstChain": "ARBITRUM",
+        "srcToken": "ETH",
+        "dstToken": "ETH",
+        "amountP": 100
+    },
     "arb_op_br": {
         "script": "bridge",
         "srcChain": "ARBITRUM",
