@@ -1,36 +1,30 @@
 from config import *
 # Flows
 PROJECTS = {
-    # "arb_sw_eth": {
-    #     "script": "swap",
-    #     "srcChain": "ARBITRUM",
-    #     "dstChain": "ARBITRUM",
-    #     "srcToken": "ETH",
-    #     "dstToken": "USDC",
-    #     "amountP": 95, # 95%
-    # },
-    # "arb_sw_token": {
-    #     "script": "swap",
-    #     "srcChain": "ARBITRUM",
-    #     "dstChain": "ARBITRUM",
-    #     "srcToken": "USDC",
-    #     "dstToken": "ETH",
-    #     "amountP": 100
-    # },
-    "op_arb_br": {
-        "script": "bridge",
-        "srcChain": "OPTIMISM",
-        "dstChain": "ARBITRUM",
-        "srcToken": "ETH",
-        "dstToken": "ETH",
-        "amountP": 100
-    },
-    "arb_op_br": {
-        "script": "bridge",
-        "srcChain": "ARBITRUM",
-        "dstChain": "OPTIMISM",
-        "srcToken": "ETH",
-        "dstToken": "ETH",
-        "amountP": 100
-    },
+    "ARBITRUM": [
+        {
+            "script": "swap",
+            "srcChain": "ARBITRUM",
+            "dstChain": "ARBITRUM",
+            "srcToken": "ETH",
+            "dstToken": "USDC",
+            "amountP": 95, # 95%
+        },
+        {
+            "script": "swap",
+            "srcChain": "ARBITRUM",
+            "dstChain": "ARBITRUM",
+            "srcToken": "USDC",
+            "dstToken": "ETH",
+            "amountP": 100
+        },
+        {
+            "script": "bridge",
+            "srcChain": "ARBITRUM",
+            "dstChain": "OPTIMISM",
+            "srcToken": "ETH",
+            "dstToken": "ETH",
+            "amountP": 100
+        },
+    ]
 }
