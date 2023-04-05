@@ -33,7 +33,8 @@ def bridge(wallet, params, wait_balance=True):
         amount = int(balance_wei / 100 * params["amountP"])
     except Exception as e:
         logger.error(f"ERROR | Can't prepare to swap and calculate amount.\n{e}")
-
+    sleep(3)
+    
     try:
         bridge_data = get_bridge_data(
             wallet.address,
@@ -61,6 +62,7 @@ def bridge(wallet, params, wait_balance=True):
                 amount,
                 wallet,
             )
+            sleep(3)
 
         logger.info("Bridging ...")
         tryNum = 0
