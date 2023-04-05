@@ -33,6 +33,7 @@ def bridge(wallet, params, wait_balance=True):
         amount = int(balance_wei / 100 * params["amountP"])
     except Exception as e:
         logger.error(f"ERROR | Can't prepare to swap and calculate amount.\n{e}")
+        return False
     sleep(3)
     
     try:
@@ -51,6 +52,7 @@ def bridge(wallet, params, wait_balance=True):
                 break
     except Exception as e:
         logger.error(f"ERROR | Can't get swap data from MM.\n{e}")
+        return False
 
     try:
         if srcTokenAddress != config.ETH:
@@ -95,3 +97,4 @@ def bridge(wallet, params, wait_balance=True):
 
     except Exception as e:
         logger.error(f"ERROR | Can't bridge.\n{e}")
+        return False

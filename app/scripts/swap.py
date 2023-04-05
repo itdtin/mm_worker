@@ -31,23 +31,22 @@ def swap(wallet, params):
         amount = int(balance_wei / 100 * params["amountP"])
     except Exception as e:
         logger.error(f"ERROR | Can't prepare to swap and calculate amount.\n{e}")
+        return False
     sleep(3)
     try: 
-        swap_data = get_swap_data(srcChain.get("CHAIN_ID"), srcTokenAddress, amount, dstTokenAddress, wallet.address,
-                                  config.SWAP_SLIPPAGE, config.TIMEOUT)
+        swap_data = get_swap_data(srcChain.get("CHAIN_ID"), srcTokenAddress, amount, dstTokenAddress, wallet.address, config.SWAP_SLIPPAGE, config.TIMEOUT)
         for i in swap_data:
             if i["trade"]:
                 swap_data = i
                 break
     except Exception as e:
         logger.error(f"ERROR | Can't get swap data from MM.\n{e}")
- 
+        return False
     try:
         if srcTokenAddress != config.ETH:
             logger.info("Approving ...")
             approve(w3, token, w3.toChecksumAddress(swap_data["trade"]["to"]), amount, wallet)
             sleep(3)
-            
         logger.info("Swapping ...")
         tryNum = 0
         while True:
@@ -74,7 +73,8 @@ def swap(wallet, params):
                 if tryNum > config.ATTEMTS_TO_NODE_REQUEST:
                     logger.error(f"ERROR | while swapping.\n{e}")
                     return False
-                sleep(5)
-        
+                sleep(10)
     except Exception as e:
         logger.error(f"ERROR | Can't swap.\n{e}")
+        return False
+

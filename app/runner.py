@@ -30,11 +30,13 @@ class Runner:
 
         while self.wallets_queue.qsize():
             wallet = self.wallets_queue.get()
+            print(f"Running on the wallet: {wallet.address}")
             results[wallet.address] = {}
             self.run_projects_in_order(wallet)
             self.make_pause_btw_wlt()
 
     def run_projects_in_order(self, wallet):
+        result = True
         for chain_name, chain_actions in flows_config.PROJECTS.items():
             for project_params in chain_actions:
                 script_name = project_params['script']
@@ -43,9 +45,10 @@ class Runner:
                 else:
                     project_name = f"{chain_name}_{project_params['script']}_{project_params['srcToken']}_{project_params['srcChain']}_{project_params['dstChain']}"
                 if config.to_run[chain_name][script_name]:
-                    print(f"RUNNUNIG {project_name} ...")
-                    self.run_project(wallet, project_params)
-                    self.make_pause_btw_projects()
+                    if result:
+                        print(f"RUNNUNIG {project_name} ...")
+                        result = self.run_project(wallet, project_params)
+                        self.make_pause_btw_projects()
 
     def run_project(self, wallet, run_args=None):
         if not run_args:
@@ -83,8 +86,8 @@ class Runner:
     @staticmethod
     def make_pause(wait_type):
         counter = random.randint(*wait_type)
-        logger.info(f"INFO | Pause ...{wait_type}")
-        step = 0.1
+        logger.info(f"INFO | Pause ...{counter}... seconds")
+        step = 1
         while counter > 0:
             time.sleep(step)
             counter -= step

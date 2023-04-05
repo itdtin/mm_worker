@@ -44,8 +44,8 @@ TIMEOUT: int = 10000 # Metamask default
 WAIT_BTW_WALLET_MIN: int = 1
 WAIT_BTW_WALLET_MAX: int = 2
 
-WAIT_BTW_PROJECT_MIN: int = 2
-WAIT_BTW_PROJECT_MAX: int = 4
+WAIT_BTW_PROJECT_MIN: int = 4
+WAIT_BTW_PROJECT_MAX: int = 7
 
 # Tokens
 ETH: str = "0x0000000000000000000000000000000000000000"
@@ -101,7 +101,7 @@ NETWORKS = {
         }
     },
     "ARBITRUM": {
-        "GAS_LEFT": 2,
+        "GAS_LEFT": 4,
         "GAS_MULTIPLIER": 4,
         "CHAIN_ID": ARBITRUM_CHAIN_ID,
         "RPC": ARBITRUM_RPC,
