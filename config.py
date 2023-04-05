@@ -16,14 +16,6 @@ to_run = {
         "swap": True,
         "bridge": True
     },
-    "AVAX": {
-        "swap": True,
-        "bridge": True
-    },
-    "POLYGON": {
-        "swap": True,
-        "bridge": True
-    },
     "OPTIMISM": {
         "swap": True,
         "bridge": True
@@ -36,7 +28,7 @@ ATTEMTS_TO_API_REQUEST = 9
 BRIDGE_BALANCE_WAIT_TIME: int = 2000 # 2000 seconds
 
 # Swap
-SWAP_SLIPPAGE: int = 3 # Metamask default
+SWAP_SLIPPAGE: int = 5 # Metamask default
 BRIDGE_SLIPPAGE: int = 5 # Metamask default
 TIMEOUT: int = 10000 # Metamask default
 
@@ -63,12 +55,6 @@ ARBITRUM_CHAIN_ID: int = 42161
 
 OPTIMISM_RPC: str = "https://opt-mainnet.g.alchemy.com/v2/0K6bMED4RlCn2DPr8tKQS8XTRMcUDKFR"
 OPTIMISM_CHAIN_ID: int = 10
-
-POLYGON_RPC: str = "https://polygon-mainnet.g.alchemy.com/v2/ncSSy-j4i1T3hcN5hFCtEsyghpLCw_0p"
-POLYGON_CHAIN_ID: int = 137
-
-AVAX_RPC: str = "https://avalanche-mainnet.infura.io/v3/ca0d7f3c70f84e22ab29e5a74b329a3a"
-AVAX_CHAIN_ID: int = 43114
 
 BSC_RPC: str = "https://alien-nameless-breeze.bsc.quiknode.pro/bdecd2a7ddc4f6d270d26a9cd5c1b4f3c120ff53/"
 BSC_CHAIN_ID: int = 56
@@ -135,53 +121,9 @@ NETWORKS = {
             "address": "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47",
             "decimals": ETH_DECIMALS
         },
-        "DAI": {
-            "address": "0x1af3f329e8be154074d8769d1ffa4ee058b1dbc3",
-            "decimals": ETH_DECIMALS
-        }
-    },
-    "AVAX": {
-        "GAS_LEFT": 1,
-        "GAS_MULTIPLIER": 3,
-        "CHAIN_ID": AVAX_CHAIN_ID,
-        "RPC": AVAX_RPC,
-        "USDC": {
-            "address": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
-            "decimals": USDC_DECIMALS
-        },
-        "USDCE": {
-            "address": "0xa7d7079b0fead91f3e65f86e8915cb59c1a4c664",
-            "decimals": USDC_DECIMALS
-        },
         "USDT": {
-            "address": "0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7",
+            "address": "0x55d398326f99059ff775485246999027b3197955",
             "decimals": ETH_DECIMALS
-        },
-        "AVAX": {
-            "address": ETH,
-            "decimals": ETH_DECIMALS
-        },
-        "DAI": {
-            "address": "0xd586E7F844cEa2F87f50152665BCbc2C279D8d70",
-            "decimals": ETH_DECIMALS
-        }
-    },
-    "POLYGON": {
-        "GAS_LEFT": 1,
-        "GAS_MULTIPLIER": 3,
-        "CHAIN_ID": POLYGON_CHAIN_ID,
-        "RPC": POLYGON_RPC,
-        "USDT": {
-            "address": "0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
-            "decimals": ETH_DECIMALS
-        },
-        "UNI": {
-            "address": "0xb33eaad8d922b1083446dc23f610c2567fb5180f",
-            "decimals": ETH_DECIMALS
-        },
-        "USDC": {
-            "address": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
-            "decimals": USDC_DECIMALS
         }
     },
     "OPTIMISM": {
