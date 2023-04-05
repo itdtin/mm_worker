@@ -30,5 +30,5 @@ def get_swap_data(chainId, src_token, src_amount, dst_token, wallet_address, sli
 
 
 def get_bridge_data(wallet_address, src_chain_id, dst_chain_id, src_token, dst_token, src_amount_wei, slippage):
-    url = f"https://bridge.metaswap.codefi.network/getQuote?walletAddress={wallet_address}&srcChainId={src_chain_id}&destChainId={dst_chain_id}&srcTokenAddress={src_token}&destTokenAddress={dst_token}&srcTokenAmount={src_amount_wei}&slippage={slippage}&aggIds=socket,lifi&insufficientBal=false"
+    url = f"https://bridge.metaswap.codefi.network/getQuote?walletAddress={wallet_address}&srcChainId={src_chain_id}&destChainId={dst_chain_id}&srcTokenAddress={src_token}&destTokenAddress={dst_token}&srcTokenAmount={src_amount_wei}&slippage={slippage}&aggIds=socket,lifi&insufficientBal=true"
     return get(url).json()

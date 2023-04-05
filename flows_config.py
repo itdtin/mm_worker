@@ -84,7 +84,7 @@ PROJECTS = {
             "dstChain": "AVAX",
             "srcToken": "USDC",
             "dstToken": "USDCE",
-            "amountP": 100
+            "amountP": 99.999
         },
     ],
     "AVAX": [

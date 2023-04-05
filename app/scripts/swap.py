@@ -18,7 +18,6 @@ def swap(wallet, params):
 
     gas_multiplier = srcChain.get("GAS_MULTIPLIER")
     w3 = Web3(Web3.HTTPProvider(srcChain.get("RPC")))
-    
     try:
         if srcTokenAddress == config.ETH:
             balance_wei = w3.eth.get_balance(wallet.address)
