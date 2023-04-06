@@ -41,14 +41,14 @@ PROJECTS = {
             "srcChain": "ARBITRUM",
             "dstChain": "ARBITRUM",
             "srcToken": "ETH",
-            "dstToken": "COMP",
+            "dstToken": "BAL",
             "amountP": 92, # 92%
         },
         {
             "script": "swap",
             "srcChain": "ARBITRUM",
             "dstChain": "ARBITRUM",
-            "srcToken": "COMP",
+            "srcToken": "BAL",
             "dstToken": "USDC",
             "amountP": 99.9999
         },

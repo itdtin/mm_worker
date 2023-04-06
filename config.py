@@ -103,8 +103,8 @@ NETWORKS = {
             "address": ETH,
             "decimals": ETH_DECIMALS
         },
-        "COMP": {
-            "address": "0x354A6dA3fcde098F8389cad84b0182725c6C91dE",
+        "BAL": {
+            "address": "0x040d1EdC9569d4Bab2D15287Dc5A4F10F56a56B8",
             "decimals": ETH_DECIMALS
         }
     },
