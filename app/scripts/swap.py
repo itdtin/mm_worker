@@ -23,7 +23,6 @@ def swap(wallet, params):
     tryNum = 0
     while True:
         try:
-
             if srcTokenAddress == config.ETH:
                 balance_wei = w3.eth.get_balance(wallet.address)
             else:
@@ -40,7 +39,7 @@ def swap(wallet, params):
                 if i["trade"]:
                     swap_data = i
                     break
-            
+
             if srcTokenAddress != config.ETH and approve_result == False:
                 logger.info("Approving ...")
                 approve_result = approve(w3, token, w3.toChecksumAddress(swap_data["trade"]["to"]), amount, wallet)

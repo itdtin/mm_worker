@@ -52,7 +52,7 @@ class Runner:
 
     def run_project(self, wallet, run_args=None):
         if not run_args:
-            run_args = {}  
+            run_args = {}
         args = [wallet] + [run_args]
         flow_ = self.scripts.get(run_args["script"])
         if flow_:

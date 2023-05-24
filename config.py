@@ -20,6 +20,14 @@ to_run = {
         "swap": True,
         "bridge": True
     },
+    "AVALANCHE": {
+         "swap": True,
+        "bridge": True
+    },
+    "POLYGON": {
+         "swap": True,
+        "bridge": True
+    }
 }
 
 ATTEMTS_TO_NODE_REQUEST = 9
@@ -58,6 +66,14 @@ OPTIMISM_CHAIN_ID: int = 10
 
 BSC_RPC: str = "https://alien-nameless-breeze.bsc.quiknode.pro/bdecd2a7ddc4f6d270d26a9cd5c1b4f3c120ff53/"
 BSC_CHAIN_ID: int = 56
+
+POLYGON_RPC: str = "https://polygon-mainnet.g.alchemy.com/v2/ncSSy-j4i1T3hcN5hFCtEsyghpLCw_0p"
+POLYGON_CHAIN_ID: int = 137
+
+AVALANCHE_RPC: str = "https://avalanche-mainnet.infura.io/v3/ca0d7f3c70f84e22ab29e5a74b329a3a"
+AVALNCHE_CHAIN_ID: int = 43114
+
+
 
 NETWORKS = {
     "MAINNET": {
@@ -124,6 +140,10 @@ NETWORKS = {
         "USDT": {
             "address": "0x55d398326f99059ff775485246999027b3197955",
             "decimals": ETH_DECIMALS
+        },
+        "BNB": {
+            "address": ETH,
+            "decimals": ETH_DECIMALS
         }
     },
     "OPTIMISM": {
@@ -147,5 +167,33 @@ NETWORKS = {
             "address": "0x4200000000000000000000000000000000000042",
             "decimals": ETH_DECIMALS
         }
+    },
+    "POLYGON": {
+        "GAS_LEFT": 2,
+        "GAS_MULTIPLIER": 4,
+        "CHAIN_ID": POLYGON_CHAIN_ID,
+        "RPC": POLYGON_RPC,
+        "USDC": {
+            "address": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+            "decimals": USDC_DECIMALS
+        },
+        "USDT": {
+            "address": "0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
+            "decimals": ETH_DECIMALS
+        },
+        "MATIC": {
+            "address": ETH,
+            "decimals": ETH_DECIMALS
+        },
+    },
+    "AVALANCHE": {
+        "GAS_LEFT": 2,
+        "GAS_MULTIPLIER": 4,
+        "CHAIN_ID": AVALNCHE_CHAIN_ID,
+        "RPC": AVALANCHE_RPC,
+        "AVAX": {
+            "address": ETH,
+            "decimals": ETH_DECIMALS
+        },
     },
 }
